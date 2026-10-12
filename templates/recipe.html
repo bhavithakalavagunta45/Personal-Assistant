@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cooking Recipe Hub</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;padding:20px}
+.container{max-width:900px;margin:auto;background:#fff;padding:20px;border-radius:15px}
+h1{text-align:center;color:#ff6b35}
+button{padding:12px 18px;margin:5px;border:none;border-radius:8px;color:white;cursor:pointer}
+.breakfast{background:#ff9800}.lunch{background:#4caf50}.dinner{background:#2196f3}
+.snacks{background:#9c27b0}.dessert{background:#e91e63}.drinks{background:#009688}
+#content{margin-top:20px;padding:15px;background:#fafafa;border-radius:10px}
+li{margin:5px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🍳 Cooking Recipe Hub</h1>
+
+<button class="breakfast" onclick="show('breakfast')">Breakfast</button>
+<button class="lunch" onclick="show('lunch')">Lunch</button>
+<button class="dinner" onclick="show('dinner')">Dinner</button>
+<button class="snacks" onclick="show('snacks')">Snacks</button>
+<button class="dessert" onclick="show('dessert')">Desserts</button>
+<button class="drinks" onclick="show('drinks')">Drinks</button>
+
+<div id="content">
+<h3>Welcome!</h3>
+<p>Select a category to view recipes.</p>
+</div>
+</div>
+
+<script>
+const recipes={
+breakfast:["Idli","Dosa","Upma","Pongal","Poha","Poori","Paratha","Oats","Sandwich","Bread Omelette"],
+lunch:["Veg Biryani","Chicken Biryani","Lemon Rice","Curd Rice","Rajma Rice","Dal Tadka","Pulao","Fried Rice","Sambar Rice","Paneer Curry"],
+dinner:["Roti & Curry","Chapati & Dal","Veg Noodles","Egg Curry","Chicken Curry","Mushroom Curry","Palak Paneer","Jeera Rice","Khichdi","Mixed Veg Curry"],
+snacks:["Samosa","Pakora","French Fries","Cutlet","Spring Roll","Popcorn","Bhel Puri","Aloo Tikki","Sandwich","Nachos"],
+dessert:["Gulab Jamun","Rasgulla","Kheer","Ice Cream","Chocolate Cake","Brownie","Jalebi","Laddu","Custard","Halwa"],
+drinks:["Mango Shake","Banana Shake","Watermelon Juice","Lemon Juice","Cold Coffee","Tea","Green Tea","Hot Chocolate","Lassi","Smoothie"]
+};
+
+function show(cat){
+let html="<h2>"+cat.toUpperCase()+" RECIPES</h2><ul>";
+recipes[cat].forEach(r=> html += "<li>"+r+"</li>");
+html+="</ul>";
+document.getElementById("content").innerHTML=html;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Slider</title>
+<style>
+body{
+	text-align:center;
+}
+table{
+	padding:10px;
+	border:5px solid black;
+	background-color:silver;
+	height:300px;
+}
+td{
+	padding:3px;
+	border:4px solid black;
+}
+button{
+	background-color:silver;
+	height:30px;
+	width:90px;
+	border:0px;
+	font-size:20px;
+}
+</style>
+<body>
+<h1>CALCULATOR</h1>
+<table align="center">
+	<tr>
+	<td colspan="4" style="background-color:white"><input style="border:0px;text-size:20px;"type="text" id="display" readonly align="center"></input></td>
+	</tr>
+	<tr>
+	<td><button onclick="press(1)">1</button></td>
+	<td><button onclick="press(2)">2</button></td>
+	<td><button onclick="press(3)">3</button></td>
+	<td><button onclick="add()">+</button></td>
+	</tr>
+	<tr>
+	<td><button onclick="press(4)">4</button></td>
+	<td><button onclick="press(5)">5</button></td>
+	<td><button onclick="press(6)">6</button></td>
+	<td><button onclick="sub()">-</button></td>
+	</tr>
+	<tr>
+	<td><button onclick="press(7)">7</button></td>
+	<td><button onclick="press(8)">8</button></td>
+	<td><button onclick="press(9)">9</button></td>	
+	<td><button onclick="mul()">x</button></td>
+	</tr>
+	<tr>		
+	<td><button onclick="press(0)">0</button></td>
+	<td colspan="2"><button onclick="calculate()">=</button></td>
+	<td><button onclick="div()">/</button></td>
+	
+	
+	</tr>
+	<script>
+	var num1="";
+	var num2="";
+	var operator="";
+	document.getElementById("display").value="enter to calculate";
+	function press(n)
+	{	
+		if(operator==="")
+		{	num1+=n;	
+			document.getElementById("display").value=num1;
+		}
+		else
+		{	num2+=n;	
+			document.getElementById("display").value=num2;
+		}
+		
+
+	}
+	function add()
+	{	operator="+";
+		document.getElementById("display").value="+"
+	}
+	function sub()
+	{	operator="-";
+		document.getElementById("display").value="-";
+	}
+	function mul()
+	{	operator="*";
+		document.getElementById("display").value="x";
+		
+	}
+	function div()
+	{	operator="/";
+		document.getElementById("display").value="/";
+		
+	}
+	function calculate()
+	{ let result;
+		var a=Number(num1);
+		var b=Number(num2);
+		if(operator==="+")
+		{
+			result=parseInt(num1)+parseInt(num2);
+		}
+		else if(operator==="-")
+		{
+			result=parseInt(num1)-parseInt(num2);
+		}
+		else if(operator==="*")
+		{
+			result=parseInt(num1)*parseInt(num2);
+		}
+		else if(operator==="/")
+		{	if(parseInt(num2)===0)
+			{	
+				document.getElementById("display").value="error";
+			}
+			else
+			{
+				result=parseInt(num1)/parseInt(num2);
+			}
+		}
+		else
+		{	
+			document.getElementById("display").value="error";
+		}
+	
+		document.getElementById("display").value=result;
+
+		//reset for next calculation
+		num1="";
+		num2="";
+		operator="";
+		
+	}
+		
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>

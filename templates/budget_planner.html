@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget Planner</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+h1{
+    text-align:center;
+    color:#333;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-right:8px;
+    margin-top:8px;
+}
+.add{background:#4CAF50;color:white;}
+.clear{background:#f44336;color:white;}
+.calc{background:#2196F3;color:white;}
+.result{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>💰 Budget Planner</h1>
+
+    <label>Monthly Income</label>
+    <input type="number" id="income" placeholder="Enter income">
+
+    <label>Expenses</label>
+    <input type="number" id="expense" placeholder="Enter expense amount">
+
+    <button class="add" onclick="addExpense()">Add Expense</button>
+    <button class="calc" onclick="calculateBudget()">Calculate</button>
+    <button class="clear" onclick="clearAll()">Clear</button>
+
+    <h3>Expenses List</h3>
+    <ul id="expenseList"></ul>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+let expenses = [];
+
+function addExpense(){
+    let value = Number(document.getElementById("expense").value);
+    if(value > 0){
+        expenses.push(value);
+        let li = document.createElement("li");
+        li.textContent = "₹" + value;
+        document.getElementById("expenseList").appendChild(li);
+        document.getElementById("expense").value = "";
+    }
+}
+
+function calculateBudget(){
+    let income = Number(document.getElementById("income").value);
+    let totalExpense = expenses.reduce((a,b)=>a+b,0);
+    let savings = income - totalExpense;
+
+    document.getElementById("result").innerHTML =
+        "Income: ₹" + income +
+        "<br>Total Expenses: ₹" + totalExpense +
+        "<br>Savings: ₹" + savings;
+}
+
+function clearAll(){
+    expenses = [];
+    document.getElementById("expenseList").innerHTML = "";
+    document.getElementById("income").value = "";
+    document.getElementById("expense").value = "";
+    document.getElementById("result").innerHTML = "";
+}
+</script>
+</body>
+</html>
